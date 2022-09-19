@@ -1,6 +1,5 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_steps_tracker/app/home/home_page.dart';
+import 'package:flutter_steps_tracker/app/home/permission_controller.dart';
 import 'package:flutter_steps_tracker/app/login_page/sign_in_page.dart';
 import 'package:flutter_steps_tracker/services/auth.dart';
 import 'package:flutter_steps_tracker/services/database.dart';
@@ -27,12 +26,11 @@ class LandingPage extends StatelessWidget {
                 if (snapshot.connectionState != ConnectionState.done) {
                   return const LoadingScreen();
                 }
-                print(snapshot.data);
                 return Provider<UserModel>.value(
                   value: UserModel(displayName: snapshot.data, uid: user.uid),
                   child: Provider<Database>(
                     create: (_) => FirestoreDatabase(uid: user.uid!),
-                    child: const HomePage(),
+                    child: const PermissionController(),
                   ),
                 );
               });
