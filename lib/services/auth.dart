@@ -12,6 +12,7 @@ abstract class AuthBase {
   UserModel? currentUser();
   Future<UserModel?> signInAnonymously(String name);
   Future<void> signOut();
+  Future<String> currentUserName();
 }
 
 class Auth implements AuthBase {
@@ -31,6 +32,17 @@ class Auth implements AuthBase {
   UserModel? currentUser() {
     final user = FirebaseAuth.instance.currentUser!;
     return _userFromFirebase(user);
+  }
+
+  @override
+  Future<String> currentUserName() async {
+    final user = FirebaseAuth.instance.currentUser!;
+    final userData = await FirebaseFirestore.instance
+        .collection("users")
+        .doc(user.uid)
+        .get();
+    final mydoc = userData.data();
+    return mydoc!['name'];
   }
 
   @override
