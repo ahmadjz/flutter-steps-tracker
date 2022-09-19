@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_steps_tracker/app/home/home_page.dart';
 import 'package:flutter_steps_tracker/utils/colors.dart';
 import 'package:flutter_steps_tracker/widgets/loading_screen.dart';
 import 'package:permission_handler/permission_handler.dart';
@@ -12,6 +13,9 @@ class PermissionController extends StatefulWidget {
 
 class _PermissionControllerState extends State<PermissionController>
     with WidgetsBindingObserver {
+  bool isPermissionGranted = false;
+  bool askPermission = true;
+  bool isOpenSetting = false;
   @override
   void initState() {
     super.initState();
@@ -20,6 +24,7 @@ class _PermissionControllerState extends State<PermissionController>
 
   @override
   void didChangeAppLifecycleState(AppLifecycleState state) async {
+    print("object");
     await requestPermission();
   }
 
@@ -30,12 +35,19 @@ class _PermissionControllerState extends State<PermissionController>
   }
 
   Future<bool> requestPermission() async {
-    bool isPermissionGranted = await Permission.activityRecognition.isGranted;
-    if (isPermissionGranted) {
-      return true;
-    } else {
-      return false;
+    if (askPermission) {
+      askPermission = false;
+      await Permission.activityRecognition.request();
     }
+    bool isGranted = await Permission.activityRecognition.isGranted;
+    isPermissionGranted = isGranted;
+    if (isOpenSetting) {
+      isOpenSetting = false;
+      setState(() {
+        isPermissionGranted = isGranted;
+      });
+    }
+    return isGranted;
   }
 
   @override
@@ -47,7 +59,7 @@ class _PermissionControllerState extends State<PermissionController>
               if (snapshot.connectionState != ConnectionState.done) {
                 return const LoadingScreen();
               }
-              if (!snapshot.data!) {
+              if (!isPermissionGranted) {
                 return Center(
                   child: Column(
                     children: [
@@ -68,6 +80,8 @@ class _PermissionControllerState extends State<PermissionController>
                                   cardBackground)),
                           onPressed: () async {
                             await openAppSettings();
+                            await Future.delayed(const Duration(seconds: 2));
+                            isOpenSetting = true;
                           },
                           child: const Text("Open settings")),
                       Flexible(
@@ -78,22 +92,7 @@ class _PermissionControllerState extends State<PermissionController>
                   ),
                 );
               }
-              return Center(
-                child: Column(
-                  children: [
-                    Flexible(
-                      flex: 2,
-                      child: Container(),
-                    ),
-                    Text("hiiii"),
-                    ElevatedButton(onPressed: () {}, child: Text("touch me")),
-                    Flexible(
-                      flex: 2,
-                      child: Container(),
-                    ),
-                  ],
-                ),
-              );
+              return const HomePage();
             }));
   }
 }
