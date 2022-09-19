@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_steps_tracker/app/home/permission_controller.dart';
 import 'package:flutter_steps_tracker/app/login_page/sign_in_page.dart';
 import 'package:flutter_steps_tracker/services/auth.dart';
-import 'package:flutter_steps_tracker/services/database.dart';
+import 'package:flutter_steps_tracker/services/my_database.dart';
 import 'package:flutter_steps_tracker/widgets/loading_screen.dart';
 import 'package:provider/provider.dart';
 
@@ -28,8 +28,8 @@ class LandingPage extends StatelessWidget {
                 }
                 return Provider<UserModel>.value(
                   value: UserModel(displayName: snapshot.data, uid: user.uid),
-                  child: Provider<Database>(
-                    create: (_) => FirestoreDatabase(uid: user.uid!),
+                  child: ChangeNotifierProvider<MyDatabase>(
+                    create: (_) => MyDatabase(uid: user.uid!),
                     child: const PermissionController(),
                   ),
                 );
