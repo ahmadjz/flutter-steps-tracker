@@ -45,7 +45,6 @@ class _PermissionControllerState extends State<PermissionController>
 
   @override
   void didChangeAppLifecycleState(AppLifecycleState state) async {
-    print("object");
     await requestPermission();
   }
 

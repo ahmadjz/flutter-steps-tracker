@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_steps_tracker/app/home/shop/utils/shops_dummy_data.dart';
 import 'package:flutter_steps_tracker/app/home/shop/widgts/shop_item.dart';
-import 'package:flutter_steps_tracker/services/my_database.dart';
 import 'package:flutter_steps_tracker/utils/colors.dart';
-import 'package:provider/provider.dart';
 
 class ShopScreen extends StatelessWidget {
   const ShopScreen({super.key, required this.menuScreenContext});

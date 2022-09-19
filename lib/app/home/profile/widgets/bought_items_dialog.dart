@@ -1,10 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_steps_tracker/app/home/profile/widgets/single_bought_item.dart';
 import 'package:flutter_steps_tracker/models/bought_item.dart';
-import 'package:flutter_steps_tracker/services/my_database.dart';
 import 'package:flutter_steps_tracker/utils/colors.dart';
 import 'package:flutter_steps_tracker/widgets/my_alert_dialog.dart';
-import 'package:provider/provider.dart';
 
 class BoughtItemsDialog extends StatelessWidget {
   const BoughtItemsDialog({Key? key, required this.allBoughtItems})
