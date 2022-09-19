@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_steps_tracker/app/home/profile/profile_screen.dart';
+import 'package:flutter_steps_tracker/utils/colors.dart';
 import 'package:persistent_bottom_nav_bar/persistent_tab_view.dart';
 
 class HomePage extends StatefulWidget {
@@ -34,19 +35,19 @@ class _HomePageState extends State<HomePage> {
         PersistentBottomNavBarItem(
           icon: const Icon(Icons.home),
           title: "Profile",
-          activeColorPrimary: const Color.fromARGB(255, 238, 110, 93),
+          activeColorPrimary: activeColor,
           inactiveColorPrimary: Colors.grey,
         ),
         PersistentBottomNavBarItem(
           icon: const Icon(Icons.home),
           title: "Profile",
-          activeColorPrimary: const Color.fromARGB(255, 238, 110, 93),
+          activeColorPrimary: activeColor,
           inactiveColorPrimary: Colors.grey,
         ),
         PersistentBottomNavBarItem(
           icon: const Icon(Icons.person),
           title: "Profile",
-          activeColorPrimary: const Color.fromARGB(255, 238, 110, 93),
+          activeColorPrimary: activeColor,
           inactiveColorPrimary: Colors.grey,
         ),
       ];
