@@ -51,6 +51,7 @@ class Auth implements AuthBase {
     final FirebaseFirestore firestore = FirebaseFirestore.instance;
     final authResult = await auth.signInAnonymously().then((value) {
       firestore.collection("users").doc(value.user!.uid).set({"name": name});
+      firestore.collection("users").doc(value.user!.uid).update({"points": 0});
       return value;
     });
 
