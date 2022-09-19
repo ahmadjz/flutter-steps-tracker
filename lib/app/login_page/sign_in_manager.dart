@@ -7,16 +7,13 @@ class SignInManager {
   SignInManager({required this.auth, required this.isLoading});
   final AuthBase auth;
   final ValueNotifier<bool> isLoading;
-  Future<UserModel?> _signIn(Future<UserModel?> Function() signInMethod) async {
+  Future<UserModel?> signInAnonymously(String name) async {
     try {
       isLoading.value = true;
-      return await signInMethod();
+      return await auth.signInAnonymously(name);
     } catch (e) {
       isLoading.value = false;
       rethrow;
     }
   }
-
-  Future<UserModel?> signInAnonymously() async =>
-      _signIn(auth.signInAnonymously);
 }

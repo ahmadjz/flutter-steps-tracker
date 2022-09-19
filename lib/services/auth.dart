@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/services.dart';
 
@@ -10,7 +11,7 @@ class UserModel {
 abstract class AuthBase {
   Stream<UserModel?> get onAuthStateChanged;
   UserModel? currentUser();
-  Future<UserModel?> signInAnonymously();
+  Future<UserModel?> signInAnonymously(String name);
   Future<void> signOut();
 }
 
@@ -25,7 +26,6 @@ class Auth implements AuthBase {
   @override
   Stream<UserModel?> get onAuthStateChanged {
     return FirebaseAuth.instance.authStateChanges().map(_userFromFirebase);
-    //another way of writing it map((User)=> _userFromFirebase(firebaseUser
   }
 
   @override
@@ -35,8 +35,13 @@ class Auth implements AuthBase {
   }
 
   @override
-  Future<UserModel?> signInAnonymously() async {
-    final authResult = await FirebaseAuth.instance.signInAnonymously();
+  Future<UserModel?> signInAnonymously(String name) async {
+    final FirebaseAuth auth = FirebaseAuth.instance;
+    final FirebaseFirestore firestore = FirebaseFirestore.instance;
+    final authResult = await auth.signInAnonymously().then((value) {
+      firestore.collection("users").doc(value.user!.uid).set({"name": name});
+      return value;
+    });
 
     return _userFromFirebase(authResult.user);
   }
