@@ -1,8 +1,10 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_steps_tracker/app/home/home_page.dart';
 import 'package:flutter_steps_tracker/app/login_page/sign_in_page.dart';
 import 'package:flutter_steps_tracker/services/auth.dart';
 import 'package:flutter_steps_tracker/services/database.dart';
+import 'package:flutter_steps_tracker/widgets/loading_screen.dart';
 import 'package:provider/provider.dart';
 
 class LandingPage extends StatelessWidget {
@@ -19,19 +21,23 @@ class LandingPage extends StatelessWidget {
           if (user == null) {
             return SignInPage.create(context);
           }
-          return Provider<UserModel>.value(
-            value: user,
-            child: Provider<Database>(
-              create: (_) => FirestoreDatabase(uid: user.uid!),
-              child: const HomePage(),
-            ),
-          );
+          return FutureBuilder<String>(
+              future: auth.currentUserName(),
+              builder: (context, snapshot) {
+                if (snapshot.connectionState != ConnectionState.done) {
+                  return const LoadingScreen();
+                }
+                print(snapshot.data);
+                return Provider<UserModel>.value(
+                  value: UserModel(displayName: snapshot.data, uid: user.uid),
+                  child: Provider<Database>(
+                    create: (_) => FirestoreDatabase(uid: user.uid!),
+                    child: const HomePage(),
+                  ),
+                );
+              });
         } else {
-          return const Scaffold(
-            body: Center(
-              child: CircularProgressIndicator(),
-            ),
-          );
+          return const Scaffold(body: LoadingScreen());
         }
       },
     );
