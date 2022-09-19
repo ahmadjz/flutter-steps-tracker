@@ -77,7 +77,8 @@ class _PermissionControllerState extends State<PermissionController>
         body: FutureBuilder<bool>(
             future: requestPermission(),
             builder: (context, snapshot) {
-              if (snapshot.connectionState != ConnectionState.done) {
+              if (snapshot.connectionState != ConnectionState.done ||
+                  _isLoading) {
                 return const LoadingScreen();
               }
               if (!isPermissionGranted) {
