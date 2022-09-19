@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_steps_tracker/app/home/home_page.dart';
+import 'package:flutter_steps_tracker/services/my_database.dart';
 import 'package:flutter_steps_tracker/utils/colors.dart';
 import 'package:flutter_steps_tracker/widgets/loading_screen.dart';
 import 'package:permission_handler/permission_handler.dart';
+import 'package:provider/provider.dart';
 
 class PermissionController extends StatefulWidget {
   const PermissionController({super.key});
@@ -16,6 +18,25 @@ class _PermissionControllerState extends State<PermissionController>
   bool isPermissionGranted = false;
   bool askPermission = true;
   bool isOpenSetting = false;
+  bool _isInit = true;
+  bool _isLoading = false;
+
+  @override
+  void didChangeDependencies() {
+    if (_isInit) {
+      setState(() {
+        _isLoading = true;
+      });
+      Provider.of<MyDatabase>(context, listen: false).initDatabase().then((_) {
+        setState(() {
+          _isLoading = false;
+        });
+      });
+    }
+    _isInit = false;
+    super.didChangeDependencies();
+  }
+
   @override
   void initState() {
     super.initState();
