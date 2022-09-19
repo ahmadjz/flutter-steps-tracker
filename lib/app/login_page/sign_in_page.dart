@@ -4,6 +4,7 @@ import 'package:flutter_steps_tracker/app/login_page/sign_in_manager.dart';
 import 'package:flutter_steps_tracker/services/auth.dart';
 import 'package:flutter_steps_tracker/utils/colors.dart';
 import 'package:flutter_steps_tracker/utils/show_snack_bar.dart';
+import 'package:flutter_steps_tracker/widgets/loading_screen.dart';
 import 'package:flutter_steps_tracker/widgets/text_field_input.dart';
 import 'package:provider/provider.dart';
 
@@ -59,9 +60,7 @@ class _SignInPageState extends State<SignInPage> {
 
   Widget _buildHeader() {
     if (widget.isLoading) {
-      return const Center(
-        child: CircularProgressIndicator(),
-      );
+      return const LoadingScreen();
     } else {
       return const Text(
         'Sign in page',
@@ -92,6 +91,7 @@ class _SignInPageState extends State<SignInPage> {
             hintText: 'Enter your name',
             textInputType: TextInputType.text,
             textEditingController: _nameController,
+            isEnabled: widget.isLoading ? false : true,
           ),
           const SizedBox(
             height: 24,
@@ -106,7 +106,7 @@ class _SignInPageState extends State<SignInPage> {
                 shape: const RoundedRectangleBorder(
                   borderRadius: BorderRadius.all(Radius.circular(4)),
                 ),
-                color: widget.isLoading ? secondaryColor : blueColor,
+                color: widget.isLoading ? secondaryColor : cardBackground,
               ),
               child: const Text(
                 'Log in',
