@@ -13,17 +13,14 @@ class LoadingScreen extends StatelessWidget {
       children: <Widget>[
         Container(
           color: Colors.transparent,
-          width: 100,
-          height: 100,
+          width: 50,
+          height: 50,
           child: const LoadingIndicator(
               indicatorType: Indicator.ballSpinFadeLoader,
               colors: [blueColor],
               backgroundColor: Colors.transparent,
               pathBackgroundColor: Colors.black),
         ),
-        const SizedBox(
-          height: 30,
-        )
       ],
     ));
   }
