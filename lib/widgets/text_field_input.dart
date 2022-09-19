@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 class TextFieldInput extends StatelessWidget {
   final TextEditingController textEditingController;
   final bool isPass;
+  final bool isEnabled;
   final String hintText;
   final VoidCallback? onEditingComplete;
   final TextInputType textInputType;
@@ -10,6 +11,7 @@ class TextFieldInput extends StatelessWidget {
     Key? key,
     required this.textEditingController,
     this.isPass = false,
+    this.isEnabled = true,
     required this.hintText,
     required this.onEditingComplete,
     required this.textInputType,
@@ -22,6 +24,7 @@ class TextFieldInput extends StatelessWidget {
     );
 
     return TextField(
+      enabled: isEnabled,
       onEditingComplete: onEditingComplete,
       controller: textEditingController,
       decoration: InputDecoration(
