@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_steps_tracker/app/home/profile/widgets/bought_items_dialog.dart';
+import 'package:flutter_steps_tracker/models/bought_item.dart';
 import 'package:flutter_steps_tracker/services/my_database.dart';
 import 'package:flutter_steps_tracker/utils/colors.dart';
 import 'package:flutter_steps_tracker/widgets/avatar.dart';
@@ -8,6 +9,15 @@ import 'package:provider/provider.dart';
 class ProfileScreen extends StatelessWidget {
   const ProfileScreen({super.key, required this.menuScreenContext});
   final BuildContext menuScreenContext;
+
+  void onTap(BuildContext context, List<BoughtItem> allBoughtItems) {
+    showDialog(
+        barrierDismissible: true,
+        context: context,
+        builder: (context) => BoughtItemsDialog(
+              allBoughtItems: allBoughtItems,
+            ));
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -61,14 +71,7 @@ class ProfileScreen extends StatelessWidget {
                       height: 30,
                     ),
                     InkWell(
-                      onTap: () {
-                        showDialog(
-                            barrierDismissible: true,
-                            context: context,
-                            builder: (context) => BoughtItemsDialog(
-                                  allBoughtItems: myDatabase.allBoughtItems,
-                                ));
-                      },
+                      onTap: () => onTap(context, myDatabase.allBoughtItems),
                       child: Padding(
                         padding: const EdgeInsets.symmetric(horizontal: 50),
                         child: Container(
