@@ -92,7 +92,7 @@ class _PermissionControllerState extends State<PermissionController>
                   ),
                 );
               }
-              return const HomePage();
+              return HomePage(menuScreenContext: context);
             }));
   }
 }
