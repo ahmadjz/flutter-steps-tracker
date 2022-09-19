@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_steps_tracker/app/home/profile/profile_screen.dart';
+import 'package:flutter_steps_tracker/app/home/shop/shop_screen.dart';
 import 'package:flutter_steps_tracker/utils/colors.dart';
 import 'package:persistent_bottom_nav_bar/persistent_tab_view.dart';
 
@@ -20,10 +21,10 @@ class _HomePageState extends State<HomePage> {
   }
 
   List<Widget> _buildScreens() => [
-        ProfileScreen(
+        ShopScreen(
           menuScreenContext: widget.menuScreenContext,
         ),
-        ProfileScreen(
+        ShopScreen(
           menuScreenContext: widget.menuScreenContext,
         ),
         ProfileScreen(
@@ -39,8 +40,8 @@ class _HomePageState extends State<HomePage> {
           inactiveColorPrimary: Colors.grey,
         ),
         PersistentBottomNavBarItem(
-          icon: const Icon(Icons.home),
-          title: "Profile",
+          icon: const Icon(Icons.shop),
+          title: "Shop",
           activeColorPrimary: activeColor,
           inactiveColorPrimary: Colors.grey,
         ),
