@@ -29,7 +29,8 @@ class LandingPage extends StatelessWidget {
                 return Provider<UserModel>.value(
                   value: UserModel(displayName: snapshot.data, uid: user.uid),
                   child: ChangeNotifierProvider<MyDatabase>(
-                    create: (_) => MyDatabase(uid: user.uid!),
+                    create: (_) =>
+                        MyDatabase(uid: user.uid!, name: snapshot.data!),
                     child: const PermissionController(),
                   ),
                 );

@@ -2,7 +2,8 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 
 class MyDatabase with ChangeNotifier {
-  MyDatabase({required this.uid});
+  MyDatabase({required this.uid, required this.name});
+  final String name;
   final String uid;
   final FirebaseFirestore _firestore = FirebaseFirestore.instance;
   int _points = 0;
