@@ -3,6 +3,7 @@ import 'package:flutter_steps_tracker/app/home/profile/widgets/bought_items_dial
 import 'package:flutter_steps_tracker/models/bought_item.dart';
 import 'package:flutter_steps_tracker/services/my_database.dart';
 import 'package:flutter_steps_tracker/utils/colors.dart';
+import 'package:flutter_steps_tracker/utils/show_snack_bar.dart';
 import 'package:flutter_steps_tracker/widgets/avatar.dart';
 import 'package:provider/provider.dart';
 
@@ -11,12 +12,16 @@ class ProfileScreen extends StatelessWidget {
   final BuildContext menuScreenContext;
 
   void onTap(BuildContext context, List<BoughtItem> allBoughtItems) {
-    showDialog(
-        barrierDismissible: true,
-        context: context,
-        builder: (context) => BoughtItemsDialog(
-              allBoughtItems: allBoughtItems,
-            ));
+    if (allBoughtItems.isEmpty) {
+      showSnackBar(context, "You don't have any log yet");
+    } else {
+      showDialog(
+          barrierDismissible: true,
+          context: context,
+          builder: (context) => BoughtItemsDialog(
+                allBoughtItems: allBoughtItems,
+              ));
+    }
   }
 
   @override
