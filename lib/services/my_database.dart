@@ -45,7 +45,6 @@ class MyDatabase with ChangeNotifier {
     _firestore.collection("users").doc(uid).update({
       "buyLog": [
         ..._allBoughtItems.map((e) => e.toMap()).toList(),
-        buyLog.toMap()
       ]
     });
     notifyListeners();
