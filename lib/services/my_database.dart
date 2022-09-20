@@ -33,6 +33,12 @@ class MyDatabase with ChangeNotifier {
     }
   }
 
+  Future<void> updatePoints() async {
+    _points = points + 50;
+    _firestore.collection("users").doc(uid).update({"points": _points});
+    notifyListeners();
+  }
+
   Future<void> buyItem(int points, Shop shop) async {
     _points = points;
     final buyLog = BoughtItem(

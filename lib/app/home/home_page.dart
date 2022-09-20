@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_steps_tracker/app/home/pedometer/steps_counter_screen.dart';
 import 'package:flutter_steps_tracker/app/home/profile/profile_screen.dart';
 import 'package:flutter_steps_tracker/app/home/shop/shop_screen.dart';
 import 'package:flutter_steps_tracker/utils/colors.dart';
@@ -21,7 +22,7 @@ class _HomePageState extends State<HomePage> {
   }
 
   List<Widget> _buildScreens() => [
-        ShopScreen(
+        StepsCounterScreen(
           menuScreenContext: widget.menuScreenContext,
         ),
         ShopScreen(
@@ -34,8 +35,8 @@ class _HomePageState extends State<HomePage> {
 
   List<PersistentBottomNavBarItem> _navBarsItems() => [
         PersistentBottomNavBarItem(
-          icon: const Icon(Icons.home),
-          title: "Profile",
+          icon: const Icon(Icons.directions_run),
+          title: "Steps Counter",
           activeColorPrimary: activeColor,
           inactiveColorPrimary: Colors.grey,
         ),
