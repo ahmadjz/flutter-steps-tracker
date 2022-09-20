@@ -18,7 +18,7 @@ class ShopItem extends StatelessWidget {
     if (points < shop.cost) {
       showSnackBar(
           myContext, "you don't have enough balance to buy ${shop.name}");
-    } else if (points > shop.cost) {
+    } else if (points >= shop.cost) {
       showDialog(
           barrierDismissible: false,
           context: myContext,

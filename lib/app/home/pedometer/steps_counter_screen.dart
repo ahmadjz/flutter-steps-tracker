@@ -72,6 +72,7 @@ class _StepsCounterScreenState extends State<StepsCounterScreen> {
         steps++;
       }
       if (steps % 10 == 0) {
+        steps++;
         getPoints();
       }
       return Text(
