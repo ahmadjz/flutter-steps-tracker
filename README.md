@@ -34,6 +34,11 @@ An application to track footsteps of users, and build a reward system such that 
 ![photo_2022-09-20_12-32-26](https://user-images.githubusercontent.com/46372418/191223414-4224a0bc-1455-4f4b-980f-952a3927b589.jpg)
 ![photo_2022-09-20_12-32-34](https://user-images.githubusercontent.com/46372418/191223427-9b7c1b47-a088-4abc-834f-dfb4daa33d42.jpg)
 
+Screen for the dataBase 
+
+![image](https://user-images.githubusercontent.com/46372418/191227071-45c5590a-959e-438b-94b9-b6537d1852b3.png)
+
+
 ### Gifs
 
 https://user-images.githubusercontent.com/46372418/191223598-4d78c870-c5ef-4fea-871b-8f59befccdb3.mp4
