@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_steps_tracker/app/home/permission_controller.dart';
+import 'package:flutter_steps_tracker/app/home/permission_controller_screen.dart';
+import 'package:flutter_steps_tracker/app/home/services/permission_model.dart';
 import 'package:flutter_steps_tracker/app/login_page/sign_in_page.dart';
 import 'package:flutter_steps_tracker/services/auth.dart';
 import 'package:flutter_steps_tracker/services/my_database.dart';
@@ -28,10 +29,17 @@ class LandingPage extends StatelessWidget {
                 }
                 return Provider<UserModel>.value(
                   value: UserModel(displayName: snapshot.data, uid: user.uid),
-                  child: ChangeNotifierProvider<MyDatabase>(
-                    create: (_) =>
-                        MyDatabase(uid: user.uid!, name: snapshot.data!),
-                    child: const PermissionController(),
+                  child: MultiProvider(
+                    providers: [
+                      ChangeNotifierProvider<MyDatabase>(
+                        create: (_) =>
+                            MyDatabase(uid: user.uid!, name: snapshot.data!),
+                      ),
+                      ChangeNotifierProvider<PermissionModel>(
+                        create: (_) => PermissionModel(),
+                      ),
+                    ],
+                    child: const PermissionControllerScreen(),
                   ),
                 );
               });
