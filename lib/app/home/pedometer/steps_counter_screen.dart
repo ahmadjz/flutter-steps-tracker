@@ -42,8 +42,8 @@ class _StepsCounterScreenState extends State<StepsCounterScreen> {
   }
 
   void getPoints() {
-    showSnackBar(context, "Congrats you got 50 points");
     WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
+      showSnackBar(context, "Congrats you got 50 points");
       Provider.of<MyDatabase>(context, listen: false).updatePoints();
     });
   }
