@@ -49,9 +49,15 @@ class Auth implements AuthBase {
   Future<UserModel?> signInAnonymously(String name) async {
     final FirebaseAuth auth = FirebaseAuth.instance;
     final FirebaseFirestore firestore = FirebaseFirestore.instance;
-    final authResult = await auth.signInAnonymously().then((value) {
-      firestore.collection("users").doc(value.user!.uid).set({"name": name});
-      firestore.collection("users").doc(value.user!.uid).update({"points": 0});
+    final authResult = await auth.signInAnonymously().then((value) async {
+      await firestore
+          .collection("users")
+          .doc(value.user!.uid)
+          .set({"name": name});
+      await firestore
+          .collection("users")
+          .doc(value.user!.uid)
+          .update({"points": 0});
       return value;
     });
 
