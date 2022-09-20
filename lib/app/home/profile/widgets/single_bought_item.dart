@@ -24,13 +24,15 @@ class SingleBoughtItem extends StatelessWidget {
             borderRadius: BorderRadius.circular(12),
           ),
           width: double.infinity,
-          height: 70,
-          child: Padding(
-              padding: const EdgeInsets.only(right: 20, left: 20),
-              child: Text(
-                "You spent ${boughtItem.itemCost} health points at ${boughtItem.itemName} on ${boughtItem.date}",
-                style: const TextStyle(color: darkGrey),
-              )),
+          height: 80,
+          child: Center(
+            child: Padding(
+                padding: const EdgeInsets.only(right: 20, left: 20),
+                child: Text(
+                  "You spent ${boughtItem.itemCost} health points at ${boughtItem.itemName} on ${boughtItem.date}",
+                  style: const TextStyle(color: darkGrey),
+                )),
+          ),
         ),
         const SizedBox(
           height: 20,
