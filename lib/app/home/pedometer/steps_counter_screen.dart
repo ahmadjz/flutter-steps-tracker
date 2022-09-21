@@ -27,7 +27,7 @@ class _StepsCounterScreenState extends State<StepsCounterScreen> {
 
   double z = 0.0;
 
-  int steps = 0;
+  int steps = 1;
 
   double distance = 0.0;
 
