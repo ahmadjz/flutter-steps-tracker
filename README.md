@@ -10,19 +10,12 @@ An application to track footsteps of users, and build a reward system such that 
 - Show a visual feedback when user gain points
 - A shop list where you can redeem exchange your points with a service Validation for the exchange
 
-### Features
-
-- Users could be authenticated anonymously, upon first installation the app should ask for their name
-- Track footsteps and update them in real-time in foreground
-- For each number of footsteps you’ll get points (20 footsteps = 50 points )
-- You can see a history for all your previous exchanges
-- Show a visual feedback when user gain points
-- A shop list where you can redeem exchange your points with a service Validation for the exchange
 
 ### Software Requirements
 
 - Flutter for frontend, Firebase for backend
 - Provider for state management 
+- Only authenticated users can access the database
 
 ### Screenshots
 
@@ -39,7 +32,7 @@ Screen for the dataBase
 ![image](https://user-images.githubusercontent.com/46372418/191227071-45c5590a-959e-438b-94b9-b6537d1852b3.png)
 
 
-### Gifs
+### Video of the app
 
 https://user-images.githubusercontent.com/46372418/191223598-4d78c870-c5ef-4fea-871b-8f59befccdb3.mp4
 
