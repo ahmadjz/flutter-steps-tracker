@@ -11,7 +11,7 @@ An application to track footsteps of users, and build a reward system such that 
 - A shop list where you can redeem exchange your points with a service Validation for the exchange
 
 
-### Software Requirements
+### Built With
 
 - Flutter for frontend, Firebase for backend
 - Provider for state management 
